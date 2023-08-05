@@ -6,3 +6,6 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+argparse = "0.2.2"
+gmp-mpfr-sys = "1.6.0"
+rug = "1.20.1"
