@@ -23,3 +23,15 @@ fn test_prb3() {
     let hash: String = digest(exec(3, false));
     assert_eq!(hash, *CORRECT_HASHES.get(&3).unwrap());
 }
+
+#[test]
+fn test_prb4() {
+    let hash: String = digest(exec(4, false));
+    assert_eq!(hash, *CORRECT_HASHES.get(&4).unwrap());
+}
+
+#[test]
+fn test_prb5() {
+    let hash: String = digest(exec(5, false));
+    assert_eq!(hash, *CORRECT_HASHES.get(&5).unwrap());
+}
