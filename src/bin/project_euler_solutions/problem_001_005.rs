@@ -1,3 +1,7 @@
+use crate::project_euler_solutions::extra_funcs;
+
+use super::extra_funcs::art_thou_prime;
+
 pub fn problem_1(verbose: bool) -> String {
     let mut result: i32 = 0;
 
@@ -40,5 +44,23 @@ pub fn problem_2(verbose: bool) -> String {
     }
 
     println!("The sum of all even fibonacci numbers below 4 million is: {}", result);
+    return result.to_string();
+}
+
+pub fn problem_3(verbose: bool) -> String {
+    let big_num: i64 = 600_851_475_143;
+    let mut result: i64  = 0;
+    (3..(f64::sqrt(big_num as f64)) as i64)
+        .step_by(2)
+        .filter(|x| big_num % x == 0)
+        .for_each( |x| {
+            if art_thou_prime(x).unwrap() {
+                result = x;
+                if verbose {
+                    println!("Current highest prime factor of {:>12} is {:>4}", big_num, result);
+                }
+            }
+        });
+    println!("The higest prime factor of {} is {}", big_num, result);
     return result.to_string();
 }
