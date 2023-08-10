@@ -1,10 +1,7 @@
 use sha256::digest;
 
-use crate::project_euler_solutions::{
-    func_exec::exec,
-    test::hashes::CORRECT_HASHES
-};
-
+use crate::project_euler_solutions::func_exec::exec;
+use super::hashes::CORRECT_HASHES;
 
 #[test]
 fn test_prb1() {

@@ -86,17 +86,20 @@ pub fn problem_4(verbose: bool) -> String {
     return res.to_string();
 }
 
-pub fn problem_5(_verbose: bool) -> String {
+pub fn problem_5(verbose: bool) -> String {
     println!("2520 is the smallest number that can be divided by each of the numbers from to without any remainder.");
     println!("What is the smallest positive number that is evenly divisible (divisible with no remainder) by all of the numbers from 1 to 20?");
 
+    if verbose {
+        println!("Currently using rust iterator filters to get the lowest number evenly divisible by 1 through 20");
+    }
     let divisors: i64 = 20;
-    let mut res = (divisors..)
+    let res: String = (divisors..)
         .step_by(divisors as usize)
         .filter(|&x| extra_funcs::is_divisible_by_1_through_n(x, divisors))
-        .peekable();
-    let result: String = res.peek().unwrap().to_string();
-
-    println!("The lowest number that is evenly divisible by 1 through 20 is {}", result);
-    return result;
+        .nth(0)
+        .unwrap()
+        .to_string();
+    println!("The lowest number that is evenly divisible by 1 through 20 is {}", res);
+    return res;
 }
