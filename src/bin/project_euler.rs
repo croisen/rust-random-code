@@ -6,5 +6,5 @@ fn main() {
     let args: args::Args = args::parse_args();
     println!("Trying to get the solution for https://projecteuler.net/problem={}",
         args.problem);
-    func_exec::exec(args.problem.to_i32_wrapping(), args.verbose);
+    func_exec::exec(args.problem, args.verbose);
 }

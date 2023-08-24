@@ -1,18 +1,17 @@
 use std::process::exit;
 
 use argparse::{ ArgumentParser, StoreTrue, Store };
-use rug::Integer;
 
 
 pub struct Args {
     pub verbose: bool,
-    pub problem: Integer,
+    pub problem: i64,
 }
 
 pub fn parse_args() -> Args {
     let mut args = Args {
         verbose: false,
-        problem: Integer::new(),
+        problem: 1,
     };
 
     {
@@ -26,11 +25,6 @@ pub fn parse_args() -> Args {
                 "Sets which problem is to be solved and searches if there's a function that solves it");
         parser.parse_args_or_exit();
 
-    }
-
-    if args.problem > i32::MAX {
-        eprintln!("The argument {}, passed to --problem-number is not normal bud", args.problem);
-        exit(1);
     }
 
     return args;

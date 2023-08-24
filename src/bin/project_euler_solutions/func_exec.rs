@@ -3,7 +3,7 @@ use super::{
     problem_006_010::*
 };
 
-pub fn exec(problem: i32, verbose: bool) -> String {
+pub fn exec(problem: i64, verbose: bool) -> String {
     match problem {
         // I dunno how to make a function array and a macro to call
         // the function from said array :(

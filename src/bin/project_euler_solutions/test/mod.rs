@@ -10,7 +10,7 @@ use crate::{
 
 #[test]
 fn test_unsolved() {
-    let unsolved: String = exec(i32::MAX, false);
+    let unsolved: String = exec(i64::MAX, false);
     assert_eq!(unsolved, "I hab no solution".to_string());
 }
 

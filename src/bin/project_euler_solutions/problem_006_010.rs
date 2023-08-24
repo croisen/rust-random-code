@@ -9,19 +9,19 @@ pub fn problem_6(verbose: bool) -> String {
     println!("Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 - 385 = 2640.");
     println!("Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.");
 
-    let sum_of_sqared: i32 = (1..101)
-        .map(|x| i32::pow(x, 2))
+    let sum_of_sqared: i64 = (1..101)
+        .map(|x| i64::pow(x, 2))
         .sum();
 
-    let squared_sum  : i32 = (1..101)
-        .sum::<i32>()
+    let squared_sum  : i64 = (1..101)
+        .sum::<i64>()
         .pow(2);
     if verbose {
         println!("The sum of the squares of the first 100 natural numbers is {}", sum_of_sqared);
         println!("The square of the sum of the first 100 natural numbers is {}", squared_sum);
     }
 
-    let result: i32 = squared_sum - sum_of_sqared;
+    let result: i64 = squared_sum - sum_of_sqared;
     println!("The difference betweem the sum of the squares of the first one hundred natural numbers and the square of the sum is {}", result);
     return result.to_string();
 }
@@ -32,7 +32,7 @@ pub fn problem_7(verbose: bool) -> String {
     println!("We can see that the 6th prime is 13.");
     println!("What is the 10001st prime number?");
 
-    let primes = (2..)
+    let primes = (2i64..)
         .filter(|&x| extra_funcs::art_thou_prime(x).unwrap())
         .take(10001);
     if verbose {
@@ -82,10 +82,10 @@ pub fn problem_9(verbose: bool) -> String {
     println!("There exists only one Pythagorean triplet for which a + b + c = 1000");
     println!("Find the product abc");
 
-    let result: i32;
-    for a in  1..1000i32                              {
-    for b in (1..1000i32).skip(a.try_into().unwrap()) {
-    for c in (1..1000i32).skip(b.try_into().unwrap()) {
+    let result: i64;
+    for a in  1..1000i64                              {
+    for b in (1..1000i64).skip(a.try_into().unwrap()) {
+    for c in (1..1000i64).skip(b.try_into().unwrap()) {
         if a.pow(2) + b.pow(2) == c.pow(2) {
             if verbose {
                 println!("Current Pythagorean triplet: a: {:>4} b: {:>4} c: {:>4}", a, b, c);
@@ -112,13 +112,13 @@ pub fn problem_10(verbose: bool) -> String {
     println!("Find the sum of all the primes below two million.");
 
     if verbose {
-        (2..2000000)
+        (2i64..2000000i64)
             .filter(|&x| extra_funcs::art_thou_prime(x).unwrap())
             .for_each(|y| {
                 println!("Current prime number: {:>7}", y);
             })
     }
-    let res: String = (2..2000000)
+    let res: String = (2i64..2000000i64)
         .filter(|&x| extra_funcs::art_thou_prime(x).unwrap())
         .sum::<i64>()
         .to_string();
