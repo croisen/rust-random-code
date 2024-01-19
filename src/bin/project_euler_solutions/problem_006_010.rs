@@ -1,6 +1,5 @@
 use super::extra_funcs;
 
-
 pub fn problem_6(verbose: bool) -> String {
     println!("The sum of the squares of the first ten natural numbers is,");
     println!("1^2 + 2^2 + ... + 10^2 = 385");
@@ -9,16 +8,18 @@ pub fn problem_6(verbose: bool) -> String {
     println!("Hence the difference between the sum of the squares of the first ten natural numbers and the square of the sum is 3025 - 385 = 2640.");
     println!("Find the difference between the sum of the squares of the first one hundred natural numbers and the square of the sum.");
 
-    let sum_of_sqared: i64 = (1..101)
-        .map(|x| i64::pow(x, 2))
-        .sum();
+    let sum_of_sqared: i64 = (1..101).map(|x| i64::pow(x, 2)).sum();
 
-    let squared_sum  : i64 = (1..101)
-        .sum::<i64>()
-        .pow(2);
+    let squared_sum: i64 = (1..101).sum::<i64>().pow(2);
     if verbose {
-        println!("The sum of the squares of the first 100 natural numbers is {}", sum_of_sqared);
-        println!("The square of the sum of the first 100 natural numbers is {}", squared_sum);
+        println!(
+            "The sum of the squares of the first 100 natural numbers is {}",
+            sum_of_sqared
+        );
+        println!(
+            "The square of the sum of the first 100 natural numbers is {}",
+            squared_sum
+        );
     }
 
     let result: i64 = squared_sum - sum_of_sqared;
@@ -37,10 +38,15 @@ pub fn problem_7(verbose: bool) -> String {
         .take(10001);
     if verbose {
         for (n, prime) in primes.clone().enumerate() {
-            if        (n + 1) % 10 == 1 { println!("{:>5}st prime: {:>6}", n+1, prime); }
-            else if   (n + 1) % 10 == 2 { println!("{:>5}nd prime: {:>6}", n+1, prime); }
-            else if   (n + 1) % 10 == 3 { println!("{:>5}rd prime: {:>6}", n+1, prime); }
-            else                        { println!("{:>5}th prime: {:>6}", n+1, prime); }
+            if (n + 1) % 10 == 1 {
+                println!("{:>5}st prime: {:>6}", n + 1, prime);
+            } else if (n + 1) % 10 == 2 {
+                println!("{:>5}nd prime: {:>6}", n + 1, prime);
+            } else if (n + 1) % 10 == 3 {
+                println!("{:>5}rd prime: {:>6}", n + 1, prime);
+            } else {
+                println!("{:>5}th prime: {:>6}", n + 1, prime);
+            }
         }
     }
     let result: String = primes.last().unwrap().to_string();
@@ -62,16 +68,27 @@ pub fn problem_8(verbose: bool) -> String {
     for x in 0..(1000 - num_of_adjacent_digits) {
         let mut result: i64 = 1;
         for y in 0..num_of_adjacent_digits {
-            result *= long_num.chars().nth((x + y) as usize).unwrap().to_digit(10).unwrap() as i64;
+            result *= long_num
+                .chars()
+                .nth((x + y) as usize)
+                .unwrap()
+                .to_digit(10)
+                .unwrap() as i64;
         }
         if result > higest_result {
             higest_result = result;
             if verbose {
-                println!("Current highest product of 13 adjacent numbers: {:>11}", higest_result);
+                println!(
+                    "Current highest product of 13 adjacent numbers: {:>11}",
+                    higest_result
+                );
             }
         }
     }
-    println!("The highest product made by 13 adjacent numbers in the 1000-digit long number is {}", higest_result);
+    println!(
+        "The highest product made by 13 adjacent numbers in the 1000-digit long number is {}",
+        higest_result
+    );
     return higest_result.to_string();
 }
 
@@ -83,26 +100,29 @@ pub fn problem_9(verbose: bool) -> String {
     println!("Find the product abc");
 
     let result: i64;
-    for a in  1..1000i64                              {
-    for b in (1..1000i64).skip(a.try_into().unwrap()) {
-    for c in (1..1000i64).skip(b.try_into().unwrap()) {
-        if a.pow(2) + b.pow(2) == c.pow(2) {
-            if verbose {
-                println!("Current Pythagorean triplet: a: {:>4} b: {:>4} c: {:>4}", a, b, c);
-                println!("a^2: {} b^2 {} c^2 {}", a.pow(2), b.pow(2), c.pow(2));
-            }
-            if a + b + c == 1000 {
-                if verbose {
-                    println!("The only Pythagorean triplet whose sum is 1000 is:");
-                    println!("a: {} b: {}, c: {}", a, b, c);
+    for a in 1..1000i64 {
+        for b in (1..1000i64).skip(a.try_into().unwrap()) {
+            for c in (1..1000i64).skip(b.try_into().unwrap()) {
+                if a.pow(2) + b.pow(2) == c.pow(2) {
+                    if verbose {
+                        println!(
+                            "Current Pythagorean triplet: a: {:>4} b: {:>4} c: {:>4}",
+                            a, b, c
+                        );
+                        println!("a^2: {} b^2 {} c^2 {}", a.pow(2), b.pow(2), c.pow(2));
+                    }
+                    if a + b + c == 1000 {
+                        if verbose {
+                            println!("The only Pythagorean triplet whose sum is 1000 is:");
+                            println!("a: {} b: {}, c: {}", a, b, c);
+                        }
+                        result = a * b * c;
+                        println!("The product of the numbers of the only Pythagorean whose sum is 1000 is {}", result);
+                        return result.to_string();
+                    }
                 }
-                result = a*b*c;
-                println!("The product of the numbers of the only Pythagorean whose sum is 1000 is {}", result);
-                return result.to_string();
             }
         }
-    }
-    }
     }
     "I have no answer".to_string()
 }
